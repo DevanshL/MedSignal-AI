@@ -108,21 +108,51 @@ MedSignal/
 ## 🚀 Setup
 
 ```bash
-git clone https://github.com/your-username/MedSignal.git
+git clone https://github.com/DevanshL/MedSignal-AI.git
 cd MedSignal
 python3 -m venv medsignal-env
 source medsignal-env/bin/activate
 pip install -r requirements.txt
 ```
 
-Create `.env` in project root:
+Create a `.env` file in the project root containing:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
 HF_TOKEN=your_huggingface_token
-WANDB_API_KEY=your_wandb_key
+GOOGLE_API_KEY=your_google_api_key
+COHERE_API_KEY=your_cohere_api_key
 NCBI_API_KEY=your_ncbi_key
+WANDB_API_KEY=your_wandb_key
 ```
+
+### 🔑 Required API Keys & Services
+
+To run MedSignal AI, you need to set up the following connections and keys:
+
+1. **Groq API Key (`GROQ_API_KEY`)**:
+   * **Purpose**: Powers the main LLM routing, planning, and synthesis nodes using `llama-3.3-70b-versatile` and `llama-3.1-8b-instant`.
+   * **Where to get**: [Groq Console](https://console.groq.com/).
+
+2. **HuggingFace Token (`HF_TOKEN`)**:
+   * **Purpose**: Used for loading huggingface assets and models (e.g. `d4data/biomedical-ner-all` extraction pipeline).
+   * **Where to get**: [HuggingFace Settings -> Tokens](https://huggingface.co/settings/tokens).
+
+3. **Google AI Key (`GOOGLE_API_KEY`)**:
+   * **Purpose**: Powers backup/alternative Gemini model generations.
+   * **Where to get**: [Google AI Studio](https://aistudio.google.com/).
+
+4. **Cohere API Key (`COHERE_API_KEY`)**:
+   * **Purpose**: Optional, used if you configure cohere-based embeddings or models.
+   * **Where to get**: [Cohere Dashboard](https://dashboard.cohere.com/).
+
+5. **NCBI API Key (`NCBI_API_KEY`)**:
+   * **Purpose**: **Recommended** to increase the rate limit of NCBI E-utilities (PubMed API requests) from 3 to 10 requests per second to prevent rate limits during ingestion.
+   * **Where to get**: Create a free account on [NCBI/PubMed](https://www.ncbi.nlm.nih.gov/), navigate to your account settings, and generate an API key.
+
+6. **Weights & Biases API Key (`WANDB_API_KEY`)**:
+   * **Purpose**: Optional, used to log evaluation metrics and run RAGAS/DeepEval test tracing.
+   * **Where to get**: [Weights & Biases Console](https://wandb.ai/).
 
 ---
 
